@@ -56,14 +56,18 @@ class RoomImageController extends AbstractController
             return new Response('File upload failed', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    #[Route('/rooom_images', name: 'upload_room_image', methods: ['POST'])]
+    #[Route('/rooom_images', name: 'upload_room_images', methods: ['POST'])]
     public function upload(Request $request): Response
     {
-        $imageFile = $request->files->get('imageFile');
-        $roomId = $request->request->get('room');
+        $imageFiles = $request->files->get('imageFiles'); // This will be an array of UploadedFile objects
+        $roomId = $request->request->get('rooom'); // Note the correct key name for 'room'
 
-        if (!$imageFile || !$roomId) {
-            return new Response('No file or room ID provided', Response::HTTP_BAD_REQUEST);
+        if (!$imageFiles || !is_array($imageFiles)) {
+            return new Response('No files provided', Response::HTTP_BAD_REQUEST);
+        }
+
+        if (!$roomId) {
+            return new Response('Room ID is required', Response::HTTP_BAD_REQUEST);
         }
 
         $room = $this->em->getRepository(Room::class)->find($roomId);
@@ -72,14 +76,23 @@ class RoomImageController extends AbstractController
             throw new NotFoundHttpException('Room not found');
         }
 
-        $roomImage = new RoomImage();
-        $roomImage->setRoom($room);
-        $roomImage->setImageFile($imageFile);
+        foreach ($imageFiles as $imageFile) {
+            if ($imageFile instanceof UploadedFile) {
+                $roomImage = new RoomImage();
+                $roomImage->setRoom($room);
+                $roomImage->setImageFile($imageFile);
 
-        $this->em->persist($roomImage);
+                $this->em->persist($roomImage);
+            } else {
+                // Handle non-UploadedFile objects if needed
+                return new Response('Invalid file type', Response::HTTP_BAD_REQUEST);
+            }
+        }
+
         $this->em->flush();
 
-        return new Response('Image uploaded successfully', Response::HTTP_OK);
+        return new Response('Images uploaded successfully', Response::HTTP_OK);
     }
+
 
 }

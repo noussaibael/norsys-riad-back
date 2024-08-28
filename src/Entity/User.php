@@ -10,10 +10,12 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Controller\User\ActivateUserController;
+use App\Controller\User\ArchiveUserController;
 use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -41,6 +43,22 @@ use DateTimeInterface;
                 'summary' => 'Updates an existing user.',
                 'description' => 'Updates an existing user based on the provided data.'
             ]
+        ),
+        new Patch(
+            uriTemplate: '/users/{id}/archive',
+            controller: ArchiveUserController::class,
+            openapiContext: [
+                'summary' => 'Archives a user account .',
+                'description' => 'Marks a user account as archived.'
+            ]
+        ),
+        new Patch(
+            uriTemplate: '/users/{id}/activate',
+            controller: ActivateUserController::class,
+            openapiContext: [
+                'summary' => 'Activates a  account.',
+                'description' => 'Marks a user account as activated.'
+            ]
         )
     ]
 )]
@@ -58,7 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Length(
-        min: 10,
+        min: 8,
         minMessage: 'Your username must be at least {{ limit }} characters long.'
     )]
     #[Assert\NotBlank(message: 'Username should not be blank.')]
@@ -126,11 +144,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $tele = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrl = null;
+
     #[ORM\OneToMany(targetEntity: Token::class, mappedBy: 'user', cascade: ['remove'], orphanRemoval: true)]
     private Collection $tokens;
 
     #[ORM\OneToOne(targetEntity: Reservation::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Reservation $reservation = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $archived = false;
 
     public function getReservation(): ?Reservation
     {
@@ -147,7 +171,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->tokens = new ArrayCollection();
     }
 
-    // Getter and setter methods for the new properties
+    // Getter and setter methods for the new properties...
 
     public function getFirstname(): ?string
     {
@@ -209,7 +233,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Existing getter and setter methods for other properties...
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -284,11 +318,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
-    public function getTokens(): Collection
+    public function getArchived(): bool
     {
-        return $this->tokens;
+        return $this->archived;
     }
+
+    public function setArchived(bool $archived): self
+    {
+        $this->archived = $archived;
+
+        return $this;
+    }
+
+
+    public function set(string $field, $value): void
+    {
+        $method = 'set' . ucfirst($field);
+        if (method_exists($this, $method)) {
+            $this->$method($value);
+        }
+    }
+
+    // Additional necessary methods...
 }
+

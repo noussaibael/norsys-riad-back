@@ -24,38 +24,39 @@ class RiadImageController extends AbstractController
     #[Route('/riiad_images', name: 'upload_riad_image', methods: ['POST'])]
     public function upload(Request $request): Response
     {
-        // Debugging output
-        error_log('Request data: ' . print_r($request->request->all(), true));
-        error_log('Files data: ' . print_r($request->files->all(), true));
+        $imageFiles = $request->files->get('imageFiles'); // This will be an array of UploadedFile objects
+        $roomId = $request->request->get('riiad'); // Note the correct key name for 'room'
 
-        $imageFile = $request->files->get('imageFile');
-        $riadId = $request->request->get('riad');
-
-        if (!$imageFile || !$imageFile instanceof UploadedFile) {
-            return new Response('No valid file uploaded', Response::HTTP_BAD_REQUEST);
+        if (!$imageFiles || !is_array($imageFiles)) {
+            return new Response('No files provided', Response::HTTP_BAD_REQUEST);
         }
 
-        if (!$riadId) {
+        if (!$roomId) {
             return new Response('Riad ID is required', Response::HTTP_BAD_REQUEST);
         }
 
-        $riad = $this->em->getRepository(Riad::class)->find($riadId);
+        $room = $this->em->getRepository(Riad::class)->find($roomId);
 
-        if (!$riad) {
+        if (!$room) {
             throw new NotFoundHttpException('Riad not found');
         }
 
-        $riadImage = new RiadImage();
-        $riadImage->setRiad($riad);
-        $riadImage->setImageFile($imageFile);
+        foreach ($imageFiles as $imageFile) {
+            if ($imageFile instanceof UploadedFile) {
+                $roomImage = new RiadImage();
+                $roomImage->setRiad($room);
+                $roomImage->setImageFile($imageFile);
 
-        try {
-            $this->em->persist($riadImage);
-            $this->em->flush();
-            return new Response(json_encode(['imageUrl' => $riadImage->getImageUrl()]), Response::HTTP_CREATED, ['Content-Type' => 'application/json']);
-        } catch (FileException $e) {
-            return new Response('File upload failed', Response::HTTP_INTERNAL_SERVER_ERROR);
+                $this->em->persist($roomImage);
+            } else {
+                // Handle non-UploadedFile objects if needed
+                return new Response('Invalid file type', Response::HTTP_BAD_REQUEST);
+            }
         }
+
+        $this->em->flush();
+
+        return new Response('Images uploaded successfully', Response::HTTP_OK);
     }
 }
 
