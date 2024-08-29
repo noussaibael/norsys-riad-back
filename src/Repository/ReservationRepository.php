@@ -4,9 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Reservation;
 use App\Entity\Room;
+//use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+/*
 /**
  * @extends ServiceEntityRepository<Reservation>
  */
@@ -20,17 +21,22 @@ class ReservationRepository extends ServiceEntityRepository
     /**
      * Check if a room is available for the given date range.
      */
-    public function isRoomAvailable(Room $room, \DateTimeInterface $startDate, \DateTimeInterface $endDate): bool
+    // src/Repository/ReservationRepository.php
+
+    public function isRoomAvailableForDates(Room $room, \DateTimeInterface $startDate, \DateTimeInterface $endDate): bool
     {
         $qb = $this->createQueryBuilder('r')
-            ->where('r.room = :room')
+            ->select('r') // Only select necessary fields to improve performance
+            ->where('r.room = :room') // Check for reservations of the same room
             ->andWhere('r.start_date < :endDate')
             ->andWhere('r.end_date > :startDate')
             ->setParameter('room', $room)
             ->setParameter('startDate', $startDate)
             ->setParameter('endDate', $endDate);
 
-        return $qb->getQuery()->getOneOrNullResult() === null;
+        $query = $qb->getQuery();
+
+        return count($query->getResult()) === 0;
     }
 
     //    /**
