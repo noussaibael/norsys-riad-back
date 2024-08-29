@@ -27,8 +27,8 @@ class UserController extends AbstractController
     #[Route('/user_info', name: 'user-info', methods: ['GET'])]
     public function getUserInfo(Request $request): JsonResponse
     {
-        // Get the token from the request
-        $token = $request->query->get('token'); // Use `query` for GET requests
+        $authHeader = $request->headers->get('Authorization');
+        $token = str_replace('Bearer ', '', $authHeader);
 
         if (!$token) {
             return new JsonResponse(['error' => 'Token is required'], Response::HTTP_BAD_REQUEST);
@@ -54,6 +54,7 @@ class UserController extends AbstractController
 
             // Return user details
             return new JsonResponse([
+                'id' => $user->getId(),
                 'username' => $user->getUsername(),
                 'email' => $user->getEmail(),
                 'firstname' => $user->getFirstname(),

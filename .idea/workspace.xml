@@ -5,35 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab4aced6-a985-4d81-a677-7863718ed4fc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Riad/RiadController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/RiadService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Norsys_Riad_backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Norsys_Riad_backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/riads/moroccan-serving-mint-tea-traditional-way-66b044b8dc65e769181939.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/rooms/moroccan-serving-mint-tea-traditional-way-66b2186f5ee91448555800.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/rooms/lamps-arab-restaurant-66ae6df8487ec152597781.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/rooms/moroccan-africa-interior-ornate-pool-66b0338cf3684149822180.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/riads/moroccan-africa-interior-ornate-pool-66b2168c60cdd939677363.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/rooms/moroccan-serving-mint-tea-traditional-way-66b0435a44127433601068.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/RegistrationAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LogoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Auth/LogoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PasswordResetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PasswordReset/PasswordResetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PasswordResetRequestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PasswordReset/PasswordResetRequestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ReactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PasswordReset/ReactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Auth/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RiadController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RiadImageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Riad/RiadImageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Room/RoomController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RoomImageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Room/RoomImageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Token/TokenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UpdatePasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PasswordReset/UpdatePasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UpdateUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User/UpdateUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Riad.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Riad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/RoomImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/RoomImage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Admin/AdminService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Admin/AdminService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20240808111302.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReservationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReservationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reservation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReservationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReservationRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "noussaibael"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/noussaibael/norsys-riad-back.git",
+    "accountId": "140421ba-4139-48af-9930-af6b13d5da74"
+  }
+}]]></component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
@@ -206,19 +197,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat__EndpointRiad-Room__/c/8c1XZfXd&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Oussama/Desktop/riad/upload image/Norsys_Riad_backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "fix-reservation-controller",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Oussama/Desktop/riad/upload image/Norsys_Riad_backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
@@ -251,10 +243,25 @@
       <workItem from="1722784026206" duration="34363000" />
       <workItem from="1722933993974" duration="1652000" />
       <workItem from="1722935691605" duration="9361000" />
+      <workItem from="1724755896158" duration="11933000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
